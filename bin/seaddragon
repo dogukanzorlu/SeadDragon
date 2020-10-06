@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'seaddragon'
+require 'json'
 
-a = {"username" => "Joe", "surname" => "doe"}
+parse_json = JSON.parse('{"username": "Joe", "surname": "Doe", "author": [{"username": "Mike", "surname": "Dave"}]}')
 
 b = "username,surname"
 d = SeadDragon::SeadDragon.new("3HorPFCweyk0pakI09Y3iKS0X3SC80sA", "1234567890123456")
-puts d.nested_hash_values(a, b, "encrypt")
+puts d.nested_hash_values(parse_json, b, "encrypt")

@@ -22,6 +22,9 @@ module SeadDragon
           t.each_value { |e| nested_hash_values(e,v, crypt_method) }
           a << obj
         end
+        if obj.is_a?(Array)
+          obj.each { |e| nested_hash_values(e,v, crypt_method) }
+        end
       end
 
       a.last
