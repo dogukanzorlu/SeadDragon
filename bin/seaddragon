@@ -2,6 +2,8 @@
 
 require 'seaddragon'
 
-a = {"username" => "fake", "surname" => "faker"}
+a = {"username" => "Joe", "surname" => "doe"}
+
 b = "username,surname"
-puts SeadDragon.nested_hash_values(a, b, "encrypt")
+d = SeadDragon::SeadDragon.new("3HorPFCweyk0pakI09Y3iKS0X3SC80sA", "1234567890123456")
+puts d.nested_hash_values(a, b, "encrypt")

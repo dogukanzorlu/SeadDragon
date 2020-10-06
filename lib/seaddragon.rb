@@ -5,8 +5,14 @@ require 'json'
 
 # Simple json fields encrypt and decrypt
 module SeadDragon
-  class << self
-    def nested_hash_values(obj,key, crypt_method)
+  class SeadDragon
+
+    def initialize(chiper_key, cipher_iv)
+      @chiper_key = chiper_key
+      @cipher_iv = cipher_iv
+    end
+
+    def nested_hash_values(obj, key, crypt_method)
       a = []
       arr = key.split(",")
       arr.map do |v|
@@ -26,8 +32,8 @@ module SeadDragon
 
       cipher = OpenSSL::Cipher::AES256.new(:CBC)
       cipher.encrypt
-      cipher.key = ENV['ATTR_ENCRYPTED_KEY']
-      cipher.iv = ENV['ATTR_ENCRYPTED_IV']
+      cipher.key = @chiper_key
+      cipher.iv = @cipher_iv
 
       encrypted = cipher.update(val) + cipher.final
 
@@ -38,8 +44,8 @@ module SeadDragon
 
       decipher = OpenSSL::Cipher::AES256.new(:CBC)
       decipher.decrypt
-      decipher.key = ENV['ATTR_ENCRYPTED_KEY']
-      decipher.iv = ENV['ATTR_ENCRYPTED_IV']
+      decipher.key = @chiper_key
+      decipher.iv = @cipher_iv
 
       decrypted = decipher.update(val) + decipher.final
 
