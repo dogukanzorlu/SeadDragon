@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'seaddragon'
+
+a = {"username" => "fake", "surname" => "faker"}
+b = "username,surname"
+puts SeadDragon.nested_hash_values(a, b, "encrypt")
