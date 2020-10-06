@@ -36,6 +36,7 @@ $ bundle install
 class EncryptJsonFields
   parse_json = JSON.parse('{username: "Joe", surname: "Doe", author: [{"username": "Mike", "surname": "Dave"}]}') 
   fields = "username,surname"
+  # Key must be 32byte, IV must be 16byte
   encrypt = SeadDragon::SeadDragon.new(ENV["ENCRYPTED_KEY"], ENV["ENCRYPTED_IV"])
   result = encrypt.nested_hash_values(parse_json, fields, "encrypt").to_s
   
@@ -50,6 +51,7 @@ end
 class DecryptJsonFields
   parse_json = JSON.parse('{username: "x9A:\xA2m\xD0", surname: "x9A:\xA2m\xD0", author: [{"username": "x9A:\xA2m\xD0", "surname": "x9A:\xA2m\xD0"}]}') 
   fields = "username,surname"
+  # Key must be 32byte, IV must be 16byte
   encrypt = SeadDragon::SeadDragon.new(ENV["ENCRYPTED_KEY"], ENV["ENCRYPTED_IV"])
   result = encrypt.nested_hash_values(parse_json, fields, "decrypt").to_s
   
