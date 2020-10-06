@@ -1,4 +1,4 @@
-# JSON:API Serialization Library
+# SeadDragon
 
 [SeadDragon](https://github.com/dogukanzorlu/SeadDragon) A simple ruby gem to encrypt json fields
 
