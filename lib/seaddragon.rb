@@ -54,10 +54,6 @@ module SeadDragon
 
       decrypted
     end
-
-    def for_test_method(val)
-      "HIDDEN"
-    end
   end
 end
 
